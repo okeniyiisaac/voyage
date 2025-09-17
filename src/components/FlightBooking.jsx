@@ -5,6 +5,7 @@ import CardContent from "./utilities/bookingUi/Card/CardContent";
 import Button from "./utilities/bookingUi/Button/Button";
 import { Html, OrbitControls } from "@react-three/drei";
 import { Canvas } from "@react-three/fiber";
+import { Link } from "react-router-dom";
 
 // Seat component with hover tooltips
 function Seat({ id, position, status, toggleSeat, isSelected }) {
@@ -321,6 +322,24 @@ const calculatePrice = (from, to, passengers, tripType, luggage) => {
   setFlights(results);
 };
 
+//RIDE
+const [currentLocation, setCurrentLocation] = useState("");
+  const [destination, setDestination] = useState("");
+  const [pickupDate, setPickupDate] = useState("");
+  const [pickupTime, setPickupTime] = useState("");
+
+  // Example ride prices by destination
+  const ridePrices = {
+    "Airport": 7500,
+    "Downtown": 5000,
+    "University": 3500,
+    "Mall": 4000,
+  };
+
+  const ridePrice = destination ? ridePrices[destination] : null;
+
+ 
+
   return (
   <section data-aos="fade-down" data-aos-duration="1500" className="lg:mx-5 mx-3">
       <section className="w-full mx-auto p-6 bg-white rounded-2xl shadow-sm mt-[20px] border border-solid border-black-5">
@@ -328,7 +347,7 @@ const calculatePrice = (from, to, passengers, tripType, luggage) => {
         <div className="lg:flex md:flex sm:space-y-4 sm:grid justify-between items-center mb-6">
           <h2 className="text-2xl md:text-3xl font-bold">Find The Best Place</h2>
           <div className="flex space-x-2">
-            {["Hotels", "Flight"].map((tab) => (
+            {["Hotels", "Flight", "Voya Drive"].map((tab) => (
               <button
                 key={tab}
                 onClick={() => setActiveTab(tab)}
@@ -356,6 +375,8 @@ const calculatePrice = (from, to, passengers, tripType, luggage) => {
         <div className="mt-4">
 
           {activeTab === "Hotels" && (
+            <div>
+              <h2 className="px-4 text-xl font-semibold">Easily book the best hotels at your travel destination.</h2>
             <form className="grid grid-cols-1 md:grid-cols-5 gap-4 p-4">
       {/* City */}
       <select
@@ -462,6 +483,7 @@ const calculatePrice = (from, to, passengers, tripType, luggage) => {
 
       {/* Submit */}
       <div className="col-span-1 md:col-span-5">
+        <Link to="/authPage">
         <button
           type="submit"
           className="w-full bg-[#1CA8CB] text-white font-semibold rounded-lg px-4 py-3"
@@ -469,11 +491,15 @@ const calculatePrice = (from, to, passengers, tripType, luggage) => {
         >
           Book Now
         </button>
+        </Link>
       </div>
-    </form>
+            </form>
+            </div>
           )}
 
           {activeTab === "Flight" && (
+            <div>
+              <h2 className="px-4 text-xl mb-4 font-semibold">Book flights quickly to any destination of your choice.</h2>
             <Card className="mx-auto w-full">
               <CardContent className="p-4 sm:p-6 space-y-4">
                 <Stepper />
@@ -560,14 +586,19 @@ const calculatePrice = (from, to, passengers, tripType, luggage) => {
                             aria-label="Return date"
                           />
                         ) : (
-                          <input
+                          <div className="relative w-full mt-2">
+                            <input
                             type="number"
                             min={1}
                             value={passengers}
                             onChange={(e) => setPassengers(Number(e.target.value))}
                             placeholder="Passengers"
-                            className="w-full border rounded-lg p-2"
+                            className="w-full border rounded-lg p-2 mt-2"
                           />
+                            <span className="absolute right-20 top-1/2 -translate-y-1/2 text-gray-500 pointer-events-none">
+                              Passengers
+                            </span>
+                          </div>
                         )}
                       </div>
 
@@ -745,6 +776,107 @@ const calculatePrice = (from, to, passengers, tripType, luggage) => {
                 </div>
               </CardContent>
             </Card>
+            </div>
+          )}
+
+          {activeTab === "Voya Drive" && (
+            <div>
+              <h2 className="px-4 text-xl font-semibold">
+                Get picked up at home and dropped off at the airport — and vice versa.
+              </h2>
+
+              <form className="grid grid-cols-1 md:grid-cols-5 gap-4 p-4">
+
+                {/* Current Location */}
+                <input
+                  type="text"
+                  placeholder="Enter your current location"
+                  className="w-full px-4 py-3 border rounded-lg bg-[#efefef] text-[#333] md:col-span-2"
+                  value={currentLocation}
+                  onChange={(e) => setCurrentLocation(e.target.value)}
+                />
+
+                {/* Destination Dropdown */}
+                <select
+                  className="w-full px-4 py-3 border rounded-lg bg-[#efefef] text-[#333] md:col-span-2"
+                  value={destination}
+                  onChange={(e) => setDestination(e.target.value)}
+                >
+                  <option value="">Select Destination</option>
+                  {Object.keys(ridePrices).map((dest) => (
+                    <option key={dest} value={dest}>
+                      {dest} – ₦{ridePrices[dest].toLocaleString()}
+                    </option>
+                  ))}
+                </select>
+
+                {/* Pickup Date */}
+                <input
+                  type="date"
+                  className="w-full px-4 py-3 border rounded-lg bg-[#efefef] text-[#333]"
+                  value={pickupDate}
+                  onChange={(e) => setPickupDate(e.target.value)}
+                />
+
+                {/* Pickup Time */}
+                <input
+                  type="time"
+                  className="w-full px-4 py-3 border rounded-lg bg-[#efefef] text-[#333]"
+                  value={pickupTime}
+                  onChange={(e) => setPickupTime(e.target.value)}
+                />
+
+                {/* Ride Price */}
+                {ridePrice && (
+                  <div className="col-span-1 md:col-span-5 mt-4 p-4 border rounded-lg bg-gray-50">
+                    <p className="font-medium">Destination: {destination}</p>
+                    <p className="text-[#1CA8CB] font-bold">
+                      Ride Price: ₦{ridePrice.toLocaleString()}
+                    </p>
+                  </div>
+                )}
+
+                {/* Ride Summary */}
+                {currentLocation && destination && pickupDate && pickupTime && (
+                  <div className="col-span-1 md:col-span-5 mt-4 p-4 border rounded-lg shadow bg-white">
+                    <h3 className="font-semibold text-lg mb-2">Ride Summary</h3>
+                    <p>
+                      From: <span className="font-medium">{currentLocation}</span>
+                    </p>
+                    <p>
+                      To: <span className="font-medium">{destination}</span>
+                    </p>
+                    <p>
+                      Date: <span className="font-medium">{pickupDate}</span>
+                    </p>
+                    <p>
+                      Time: <span className="font-medium">{pickupTime}</span>
+                    </p>
+                    {ridePrice && (
+                      <p>
+                        Price:{" "}
+                        <span className="text-[#1CA8CB] font-bold">
+                          ₦{ridePrice.toLocaleString()}
+                        </span>
+                      </p>
+                    )}
+                  </div>
+                )}
+
+                {/* Submit */}
+                <div className="col-span-1 md:col-span-5">
+                  <Link to="/authPage">
+                    <button
+                      type="submit"
+                      className="w-full bg-[#1CA8CB] text-white font-semibold rounded-lg px-4 py-3"
+                      disabled={!currentLocation || !destination || !pickupDate || !pickupTime}
+                    >
+                      Book Ride
+                    </button>
+                  </Link>
+                </div>
+              </form>
+            </div>
           )}
         </div>
       </section>

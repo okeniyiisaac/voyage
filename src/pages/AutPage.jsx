@@ -82,9 +82,11 @@ const AuthPage = () => {
       <div className="w-full md:w-1/2 bg-[hsl(192,76%,15%)] flex flex-col justify-center px-10 md:px-20 text-white overflow-hidden">
         <div className="my-10 flex w-full max-w-sm items-center justify-center mx-auto">
           <div className="relative w-full flex justify-center text-center">
+            <Link to="/">
             <div className="z-[2000] p-5 lg:w-auto w-full flex justify-between">
                 <img src={brandLogo} alt="" className="cursor-pointer w-[150px]" />
             </div>
+            </Link>
           </div>
         </div>
 

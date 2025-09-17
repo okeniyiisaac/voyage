@@ -4,6 +4,7 @@ import { BiSupport } from "react-icons/bi";
 import { IoMdCloseCircle } from "react-icons/io";
 import { RiMenuFold2Fill, RiMenuFoldFill } from "react-icons/ri";
 import brandLogo from "../assets/imgs/logo.svg"
+import { Link } from "react-router-dom";
 
 const UserProfile = () => {
   const [activeTab, setActiveTab] = useState("profile");
@@ -41,8 +42,11 @@ const UserProfile = () => {
           ${sidebarOpen ? "w-64" : "w-20"} hidden sm:block`}
       >
         {/* Logo + Hamburger */}
+        
         <div className="flex items-center justify-between mb-8">
+          <Link to="/">
           <img className={`cursor-pointer h-9 ${!sidebarOpen && "hidden"}`} src={brandLogo} alt="" />
+          </Link>
           <button
             className="p-2 rounded-md transition-all duration-500 text-white hover:bg-[#1CA8CB]"
             onClick={() => setSidebarOpen(!sidebarOpen)}

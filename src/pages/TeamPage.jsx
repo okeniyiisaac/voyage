@@ -3,55 +3,64 @@ import { FiShare2 } from "react-icons/fi";
 import { FaXTwitter, FaInstagram, FaLinkedinIn, FaFacebookF, FaArrowUp } from "react-icons/fa6";
 import GlobalHeader from "../Components/GlobalHeader";
 import FooterSection from "../Components/FooterSection";
+import team1 from "../assets/imgs/team1.png"
+import team2 from "../assets/imgs/team2.png"
+import team3 from "../assets/imgs/team3.png"
+import team4 from "../assets/imgs/team4.png"
+import team5 from "../assets/imgs/team5.png"
+import team6 from "../assets/imgs/team6.png"
+import team7 from "../assets/imgs/team7.png"
+import team8 from "../assets/imgs/team8.png"
 
 const teamMembers = [
   {
     id: 1,
-    name: "Isaac Brown",
-    role: "Tourist Guide",
-    img: "https://turmet-react.vercel.app/assets/img/team/02.jpg",
-  },
-  {
-    id: 2,
-    name: "Isreal Sophia",
-    role: "Tourist Guide",
-    img: "https://turmet-react.vercel.app/assets/img/team/01.jpg",
-  },
-  {
-    id: 3,
-    name: "Theresa Web",
-    role: "Tourist Guide",
-    img: "https://turmet-react.vercel.app/assets/img/team/03.jpg",
-  },
-  {
-    id: 4,
-    name: "Floyd Miles",
-    role: "Tourist Guide",
-    img: "https://turmet-react.vercel.app/assets/img/team/04.jpg",
-  },
-  {
-    id: 5,
-    name: "Courtney Henry",
-    role: "Tourist Guide",
-    img: "https://turmet-react.vercel.app/assets/img/team/05.jpg",
+    name: "Emmanuel Omowaye",
+    role: "Front-End Developer",
+    img: team1,
   },
   {
     id: 6,
-    name: "Cody Fisher",
-    role: "Tourist Guide",
-    img: "https://turmet-react.vercel.app/assets/img/team/06.jpg",
+    name: "Omolola Odusanya",
+    role: "Front-End Developer",
+    img: team6,
   },
   {
+    id: 2,
+    name: "Olanrewaju Iluyemi",
+    role: "Front-End Developer",
+    img: team2,
+  },
+  {
+    id: 3,
+    name: "Kayode Oluwatobiloba",
+    role: "Front-End Developer",
+    img: team3,
+  },
+  {
+    id: 4,
+    name: "Isaac Okeniyi",
+    role: "Front-End Developer",
+    img: team4,
+  },
+  {
+    id: 5,
+    name: "Usama Omodara",
+    role: "Front-End Developer",
+    img: team5,
+  },
+  
+  {
     id: 7,
-    name: "Guy Hawkins",
-    role: "Tourist Guide",
-    img: "https://turmet-react.vercel.app/assets/img/team/07.jpg",
+    name: "Kazeem Aderonmu",
+    role: "Front-End Developer",
+    img: team7,
   },
   {
     id: 8,
-    name: "Guy Hawkins",
-    role: "Tourist Guide",
-    img: "https://turmet-react.vercel.app/assets/img/team/08.jpg",
+    name: "Marvellous Ibigbami",
+    role: "Front-End Developer",
+    img: team8,
   },
 ];
 
@@ -100,14 +109,14 @@ const TeamPage = () => {
             <div className="absolute left-1/2 -translate-x-1/2 bottom-2 translate-y-1/2 
                             bg-white rounded-2xl shadow-md px-4 py-6 flex items-center justify-between w-[85%]">
               <div>
-                <h3 className="font-[630] text-[1.23rem] text-gray-900">{member.name}</h3>
-                <p className="text-gray-500 text-[1.2rem]">{member.role}</p>
+                <h3 className="font-[600] text-[1rem] text-gray-900">{member.name}</h3>
+                <p className="text-gray-500 text-[.8rem]">{member.role}</p>
               </div>
 
              <div className="bg-white rounded-2xl shadow-lg overflow-visible relative">
   {/* Share button with hover social menu */}
   <div className=" absolute bottom-8 right-2 group">
-    <button className="bg-cyan-500 p-2 rounded-full w-9 h-9 sm:w-10 sm:h-10 text-white hover:bg-cyan-600 transition">
+    <button className="bg-[#1CA8CB] p-2 rounded-full w-9 h-9 sm:w-10 sm:h-10 text-white hover:bg-[#1CA8CB] transition">
       <FiShare2 size={20} className="w-5 h-5 items-center"/>
     </button>
 
@@ -117,16 +126,16 @@ const TeamPage = () => {
                  opacity-0 scale-0 group-hover:opacity-100 group-hover:scale-100 
                  transition-all duration-500 origin-bottom-right"
     >
-      <a href="#" className="bg-black text-white p-2 rounded-full hover:bg-teal-500/70">
+      <a href="#" className="bg-white text-black p-2 rounded-full hover:bg-[#1CA8CB]">
         <FaXTwitter size={16} />
       </a>
-      <a href="#" className="bg-gradient-to-tr from-yellow-400 via-pink-500 to-purple-600 text-white p-2 rounded-full hover:bg-teal-500/70">
+      <a href="#" className="bg-white text-black p-2 rounded-full hover:bg-[#1CA8CB]">
         <FaInstagram size={16} />
       </a>
-      <a href="#" className="bg-blue-600 text-white p-2 rounded-full hover:bg-teal-500/70">
+      <a href="#" className="bg-white text-black p-2 rounded-full hover:bg-[#1CA8CB]">
         <FaLinkedinIn size={16} />
       </a>
-      <a href="#" className="bg-[#1CA8CB] text-white p-2 rounded-full hover:bg-teal-500/70">
+      <a href="#" className="bg-white text-black p-2 rounded-full hover:bg-[#1CA8CB]">
         <FaFacebookF size={16} />
       </a>
     </div>

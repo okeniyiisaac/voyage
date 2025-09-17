@@ -21,6 +21,7 @@ import GlobalHeader from './Components/GlobalHeader'
 import BookingPage from "./pages/BookingPage"
 import UserProfile from "./pages/UserProfile"
 import AuthPage from './pages/AutPage'
+import ErrorPage from './pages/ErrorPage'
 
 
 
@@ -46,6 +47,7 @@ function App() {
         <Route path='/contactPage' element={<ContactPage></ContactPage>}/>
         <Route path='/userProfile' element={<UserProfile></UserProfile>}/>
         <Route path='/authPage' element={<AuthPage></AuthPage>}/>
+        <Route path='*' element={<ErrorPage/>}/>
       </Routes>
     </section>
   )
