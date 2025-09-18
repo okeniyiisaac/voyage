@@ -347,7 +347,7 @@ const [currentLocation, setCurrentLocation] = useState("");
         <div className="lg:flex md:flex sm:space-y-4 sm:grid justify-between items-center mb-6">
           <h2 className="text-2xl md:text-3xl font-bold">Find The Best Place</h2>
           <div className="flex space-x-2">
-            {["Hotels", "Flight", "Voya Drive"].map((tab) => (
+            {["Flight", "Hotels", "Voya Drive"].map((tab) => (
               <button
                 key={tab}
                 onClick={() => setActiveTab(tab)}
@@ -373,129 +373,6 @@ const [currentLocation, setCurrentLocation] = useState("");
 
         {/* Forms */}
         <div className="mt-4">
-
-          {activeTab === "Hotels" && (
-            <div>
-              <h2 className="px-4 text-xl font-semibold">Easily book the best hotels at your travel destination.</h2>
-            <form className="grid grid-cols-1 md:grid-cols-5 gap-4 p-4">
-      {/* City */}
-      <select
-        className="w-full px-4 py-3 border rounded-lg bg-[#efefef] text-[#333]"
-        value={city}
-        onChange={(e) => {
-          setCity(e.target.value);
-          setHotel("");
-          setRoom("");
-        }}
-      >
-        <option value="">Select City</option>
-        {Object.keys(hotelsData).map((c) => (
-          <option key={c} value={c}>
-            {c}
-          </option>
-        ))}
-      </select>
-
-      {/* Hotel */}
-      <select
-        className="w-full px-4 py-3 border rounded-lg bg-[#efefef] text-[#333]"
-        value={hotel}
-        onChange={(e) => {
-          setHotel(e.target.value);
-          setRoom("");
-        }}
-        disabled={!city}
-      >
-        <option value="">Select Hotel</option>
-        {city &&
-          hotelsData[city].map((h) => (
-            <option key={h.name} value={h.name}>
-              {h.name}
-            </option>
-          ))}
-      </select>
-
-      {/* Room */}
-      <select
-        className="w-full px-4 py-3 border rounded-lg bg-[#efefef] text-[#333]"
-        value={room}
-        onChange={(e) => setRoom(e.target.value)}
-        disabled={!hotel}
-      >
-        <option value="">Select Room</option>
-        {city &&
-          hotel &&
-          Object.entries(
-            hotelsData[city].find((h) => h.name === hotel).rooms
-          ).map(([roomType, price]) => (
-            <option key={roomType} value={roomType}>
-              {roomType} – ₦{price.toLocaleString()}/night
-            </option>
-          ))}
-      </select>
-
-      {/* Check-in */}
-      <input
-        type="date"
-        className="w-full px-4 py-3 border rounded-lg bg-[#efefef] text-[#333]"
-        min={today}
-        value={checkIn}
-        onChange={(e) => setCheckIn(e.target.value)}
-      />
-
-      {/* Check-out */}
-      <input
-        type="date"
-        className="w-full px-4 py-3 border rounded-lg bg-[#efefef] text-[#333]"
-        min={checkIn || today}
-        value={checkOut}
-        onChange={(e) => setCheckOut(e.target.value)}
-      />
-
-      {/* Hotel Preview */}
-      {selectedHotel && (
-        <div className="col-span-1 md:col-span-5 mt-4">
-          <div className="border rounded-lg shadow-md overflow-hidden">
-            <img
-              src={selectedHotel.image}
-              alt={selectedHotel.name}
-              className="w-full h-56 object-cover"
-            />
-            <div className="p-4">
-              <h3 className="text-lg font-semibold">{selectedHotel.name}</h3>
-              <p className="text-sm text-gray-500">City: {city}</p>
-            </div>
-          </div>
-        </div>
-      )}
-
-      {/* Show Total */}
-      {room && nights > 0 && (
-        <div className="col-span-1 md:col-span-5 mt-4 p-4 border rounded-lg bg-gray-50">
-          <p className="font-medium">
-            {hotel} – {room} ({nights} night{nights > 1 ? "s" : ""})
-          </p>
-          <p className="text-[#1CA8CB] font-bold">
-            Total Price: ₦{totalPrice.toLocaleString()}
-          </p>
-        </div>
-      )}
-
-      {/* Submit */}
-      <div className="col-span-1 md:col-span-5">
-        <Link to="/authPage">
-        <button
-          type="submit"
-          className="w-full bg-[#1CA8CB] text-white font-semibold rounded-lg px-4 py-3"
-          disabled={!room || nights <= 0}
-        >
-          Book Now
-        </button>
-        </Link>
-      </div>
-            </form>
-            </div>
-          )}
 
           {activeTab === "Flight" && (
             <div>
@@ -776,6 +653,129 @@ const [currentLocation, setCurrentLocation] = useState("");
                 </div>
               </CardContent>
             </Card>
+            </div>
+          )}
+
+          {activeTab === "Hotels" && (
+            <div>
+              <h2 className="px-4 text-xl font-semibold">Easily book the best hotels at your travel destination.</h2>
+            <form className="grid grid-cols-1 md:grid-cols-5 gap-4 p-4">
+      {/* City */}
+      <select
+        className="w-full px-4 py-3 border rounded-lg bg-[#efefef] text-[#333]"
+        value={city}
+        onChange={(e) => {
+          setCity(e.target.value);
+          setHotel("");
+          setRoom("");
+        }}
+      >
+        <option value="">Select City</option>
+        {Object.keys(hotelsData).map((c) => (
+          <option key={c} value={c}>
+            {c}
+          </option>
+        ))}
+      </select>
+
+      {/* Hotel */}
+      <select
+        className="w-full px-4 py-3 border rounded-lg bg-[#efefef] text-[#333]"
+        value={hotel}
+        onChange={(e) => {
+          setHotel(e.target.value);
+          setRoom("");
+        }}
+        disabled={!city}
+      >
+        <option value="">Select Hotel</option>
+        {city &&
+          hotelsData[city].map((h) => (
+            <option key={h.name} value={h.name}>
+              {h.name}
+            </option>
+          ))}
+      </select>
+
+      {/* Room */}
+      <select
+        className="w-full px-4 py-3 border rounded-lg bg-[#efefef] text-[#333]"
+        value={room}
+        onChange={(e) => setRoom(e.target.value)}
+        disabled={!hotel}
+      >
+        <option value="">Select Room</option>
+        {city &&
+          hotel &&
+          Object.entries(
+            hotelsData[city].find((h) => h.name === hotel).rooms
+          ).map(([roomType, price]) => (
+            <option key={roomType} value={roomType}>
+              {roomType} – ₦{price.toLocaleString()}/night
+            </option>
+          ))}
+      </select>
+
+      {/* Check-in */}
+      <input
+        type="date"
+        className="w-full px-4 py-3 border rounded-lg bg-[#efefef] text-[#333]"
+        min={today}
+        value={checkIn}
+        onChange={(e) => setCheckIn(e.target.value)}
+      />
+
+      {/* Check-out */}
+      <input
+        type="date"
+        className="w-full px-4 py-3 border rounded-lg bg-[#efefef] text-[#333]"
+        min={checkIn || today}
+        value={checkOut}
+        onChange={(e) => setCheckOut(e.target.value)}
+      />
+
+      {/* Hotel Preview */}
+      {selectedHotel && (
+        <div className="col-span-1 md:col-span-5 mt-4">
+          <div className="border rounded-lg shadow-md overflow-hidden">
+            <img
+              src={selectedHotel.image}
+              alt={selectedHotel.name}
+              className="w-full h-56 object-cover"
+            />
+            <div className="p-4">
+              <h3 className="text-lg font-semibold">{selectedHotel.name}</h3>
+              <p className="text-sm text-gray-500">City: {city}</p>
+            </div>
+          </div>
+        </div>
+      )}
+
+      {/* Show Total */}
+      {room && nights > 0 && (
+        <div className="col-span-1 md:col-span-5 mt-4 p-4 border rounded-lg bg-gray-50">
+          <p className="font-medium">
+            {hotel} – {room} ({nights} night{nights > 1 ? "s" : ""})
+          </p>
+          <p className="text-[#1CA8CB] font-bold">
+            Total Price: ₦{totalPrice.toLocaleString()}
+          </p>
+        </div>
+      )}
+
+      {/* Submit */}
+      <div className="col-span-1 md:col-span-5">
+        <Link to="/authPage">
+        <button
+          type="submit"
+          className="w-full bg-[#1CA8CB] text-white font-semibold rounded-lg px-4 py-3"
+          disabled={!room || nights <= 0}
+        >
+          Book Now
+        </button>
+        </Link>
+      </div>
+            </form>
             </div>
           )}
 

@@ -19,7 +19,7 @@ const GlobalHeader = ({headerTitle, headerLink}) => {
         {/* Hero Content */}
         <div className="relative z-10 flex items-center justify-center h-full px-6 pt-16">
           <div className="text-white">
-            <h2 className="text-[3.7rem] font-[800] mb-5">{headerTitle}</h2>
+            <h2 className="lg:text-[3.7rem] text-[2.7rem] text-center font-[800] mb-5">{headerTitle}</h2>
             <div className='flex justify-center'>
               <div className="flex items-center justify-center space-x-2 border rounded-full bg-white/20 backdrop-blur w-fit px-5 h-[50px]">
                 <Link to="/">
