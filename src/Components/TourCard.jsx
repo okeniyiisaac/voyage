@@ -3,7 +3,7 @@ import { CiLocationOn } from 'react-icons/ci'
 import { FaStar } from 'react-icons/fa'
 import { CiClock2 } from 'react-icons/ci'
 import { CiUser } from 'react-icons/ci'
-import ButtonSecondary from './utilities/ButtonSecondary'  // ✅ lowercase path
+import ButtonSecondary from '../utilities/ButtonSecondary'  // ✅ lowercase path
 import { Link } from 'react-router-dom'
 
 export default function TourCard({ location, cardpics, people, days, resorts, button, duration, price, rating }) {
